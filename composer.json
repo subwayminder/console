@@ -1,0 +1,19 @@
+{
+    "name": "subwayminder/console",
+    "description": "Simple console library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "subwayminder",
+            "email": "subwayminder@gmail.com"
+        }
+    ],
+    "require": {},
+
+    "autoload": {
+        "psr-4": {
+            "Subwayminder\\Console\\": "src/"
+        }
+    }
+}
