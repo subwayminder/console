@@ -1,23 +1,26 @@
 <?php
 namespace Subwayminder\Console\Application;
 
-use Subwayminder\Console\Commands\DefaultCommand;
-use Subwayminder\Console\Input\ArgsInput;
+use Subwayminder\Console\Commands\Command;
+use Subwayminder\Console\Input\Input;
+use Subwayminder\Console\Output\Output;
 
 
 class DefaultApplication
 {
     private string $name;
     private array $commands;
-    private ArgsInput $input;
+    private Input $input;
+    private Output $output;
 
-    public function __construct(string $name)
+    public function __construct(string $name, Input $input, Output $output)
     {
         $this->name = $name;
-        $this->input = new ArgsInput();
+        $this->input = $input;
+        $this->output = $output;
     }
 
-    public function addCommand(DefaultCommand $command): DefaultApplication
+    public function addCommand(Command $command): DefaultApplication
     {
         $this->commands[$command->getName()] = $command;
         return $this;
@@ -30,8 +33,7 @@ class DefaultApplication
 
     public function run(): void
     {
-        $command = $this->commands[$this->input->getCommand()] ?: null;
-        if($command) $command->handle();
-        else echo 'Команды не существует';
+        if(array_key_exists($this->input->getCommand(), $this->commands)) $this->commands[$this->input->getCommand()]->handle($this->input, $this->output);
+        else echo PHP_EOL.'Такой команды не существует'.PHP_EOL;
     }
 }
