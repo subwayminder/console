@@ -39,6 +39,16 @@ class Command
         return $this;
     }
 
+    public function getArguments(): array
+    {
+        return $this->arguments;
+    }
+
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
     public function addHandler(ICommandHandler $handler): Command
     {
         $this->handler = $handler;
