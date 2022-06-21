@@ -27,9 +27,9 @@ class Command
         return $this->name;
     }
 
-    public function addArgument(): Command
+    public function addArgument(string $name, string $description): Command
     {
-        $this->arguments[] = new Argument();
+        $this->arguments[] = new Argument('', '', );
         return $this;
     }
 
@@ -47,6 +47,6 @@ class Command
 
     public function handle(Input $input, Output $output): void
     {
-        $this->handler->handle($input, $output, $this);
+        $this->handler::handle($input, $output, $this);
     }
 }
