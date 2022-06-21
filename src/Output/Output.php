@@ -3,7 +3,11 @@
 
 namespace Subwayminder\Console\Output;
 
-
+/**
+ * Отвечает за вывод информации в консоль
+ * Class Output
+ * @package Subwayminder\Console\Output
+ */
 class Output
 {
     const SPACE = ' ';

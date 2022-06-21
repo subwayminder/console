@@ -13,6 +13,10 @@ abstract class Input
 
     protected array|null $tokens;
 
+    /**
+     * Input constructor.
+     * @param array|null $argv
+     */
     public function __construct(array $argv = null)
     {
         if (null === $argv) {
@@ -27,32 +31,52 @@ abstract class Input
         $this->parse();
     }
 
+    /**
+     * Парсинг входящих аргументов
+     */
     abstract protected function parse(): void;
 
+    /**
+     * @return string
+     */
     public function getCommand(): string
     {
         return $this->command;
     }
 
+    /**
+     * @return array
+     */
     public function getArguments(): array
     {
         return $this->arguments;
     }
 
+    /**
+     * @return array
+     */
     public function getParams(): array
     {
         return $this->params;
     }
 
+    /**
+     * Добавляет аргумент в инпут
+     * @param string $token
+     */
     protected function addArgument(string $token): void
     {
         $this->formatString($token, '{}');
         $argumentsArr = explode(',', $token);
         foreach ($argumentsArr as $argument) {
-            if ($argument) $this->arguments[] = $argument;
+            if ($argument) $this->arguments[$argument] = $argument;
         }
     }
 
+    /**
+     * Добавляет опцию в инпут
+     * @param string $token
+     */
     protected function addParam(string $token): void
     {
         $this->formatString($token, '[]');
@@ -63,6 +87,10 @@ abstract class Input
         $this->addValuesToParam($param, $valuesArr);
     }
 
+    /**
+     * @param string $param
+     * @param array $values
+     */
     private function addValuesToParam(string $param, array $values): void
     {
         foreach ($values as $value) {
@@ -70,6 +98,10 @@ abstract class Input
         }
     }
 
+    /**
+     * @param string $item
+     * @param string $pattern
+     */
     private function formatString(string &$item, string $pattern): void
     {
         $item = trim(trim($item), $pattern);

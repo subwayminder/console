@@ -4,7 +4,9 @@ namespace Subwayminder\Console\Input;
 
 class ArgsInput extends Input
 {
-
+    /**
+     * Реализует простой парсинг для консольного ввода
+     */
     protected function parse(): void
     {
         foreach ($this->tokens as $token) {

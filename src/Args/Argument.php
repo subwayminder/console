@@ -1,6 +1,11 @@
 <?php
 namespace Subwayminder\Console\Args;
 
+/**
+ * Объект аргумента команды
+ * Class Argument
+ * @package Subwayminder\Console\Args
+ */
 class Argument
 {
     private string $name;
