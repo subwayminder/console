@@ -29,13 +29,13 @@ class Command
 
     public function addArgument(string $name, string $description): Command
     {
-        $this->arguments[] = new Argument('', '', );
+        $this->arguments[$name] = new Argument($name, $description);
         return $this;
     }
 
     public function addParam(string $name, string $description, bool $required = false): Command
     {
-        $this->params[] = new Parameter($name, $description, $required);
+        $this->params[$name] = new Parameter($name, $description, $required);
         return $this;
     }
 
